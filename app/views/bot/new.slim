@@ -1,0 +1,15 @@
+.container
+	.is-size-3 Register New Bot
+	p Register a new bot with BotFather on telegram and then add the token below
+	.box
+		= form_for :anything, url: bot_index_path, method: :post do |f|
+			.field
+				= f.label :BotToken, "Bot Token", class: "label" 
+				.control
+				= f.text_area :BotToken, class: "input", placeholder: "Token" 
+			.field
+				= f.label :message, "Initial Message", class: "label" 
+				.control
+				= f.text_area :message, class: "input", placeholder: "Message" 
+			.control
+				= f.submit "Add Bot", class: "button" 

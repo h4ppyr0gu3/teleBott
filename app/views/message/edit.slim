@@ -1,0 +1,25 @@
+.container
+	.is-size-3 Edit Message
+	= form_for :anything, url: message_path, method: :patch do |f|
+		.field
+			= f.label :message, class: "label"
+			.control
+				= f.hidden_field :old_message, value: @message
+				= f.text_field :message, class: "input", placeholder: "Message", value: @message
+		.field
+			.control
+				= f.submit "Edit", class: "button"
+	- if @old.length > 0
+		p.label.pt-3 history
+		- @old.each_with_index do |old, idx|
+			.box
+				.columns
+					.column
+						= old
+					.column
+						= form_for :anything, url: message_path, method: :patch do |f|
+							= f.hidden_field :message, class: "input", placeholder: "Message", value: old
+							= f.hidden_field :old_message, value: @message
+							= f.submit "Select", class: "button"
+					.column
+						= link_to "Remove from history", message_path(history_id: idx), method: :delete, class: "button"

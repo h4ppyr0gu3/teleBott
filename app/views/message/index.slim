@@ -1,0 +1,18 @@
+.container
+	h1.is-size-1 Bots
+	.columns
+		.column
+			h1.is-size-3 Groups
+			- @groups.each do |group|
+				.box
+					p name: 
+					= group["name"]
+					p id: 
+					= group["id"]
+					= link_to "Remove", group_path(5), class: "button", method: :delete
+
+		.column
+			h1.is-size-3 Message
+			.box 
+				p = @message
+				= link_to "Edit", edit_message_path(5), class: "button"

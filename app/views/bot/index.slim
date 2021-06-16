@@ -1,0 +1,29 @@
+.container
+	.level
+		.level-left
+			h1.is-size-1 Bots
+		.level-right
+			= link_to "Errors", error_index_path, class: "is-size-3"
+	= link_to "Add Bot", new_bot_path, class: "button"
+
+	- @bots.each_with_index do |bot, idx|
+		.box.mt-3
+			.columns
+				.column
+					table style="width:100%"
+						tr
+							th Name:
+							th 
+								= bot["name"]
+						tr
+							td Message: 
+							td							 
+								= bot["current_message"]
+				.column
+					= link_to "Edit", bot_path(idx), class: "button mx-3"
+				.column
+					= link_to "Delete", bot_path(idx), method: :delete, class: "button"  
+					p.is-size-7 The bot has to be deleted on telegram as well
+
+
+	= link_to "Add Bot", new_bot_path, class: "button"

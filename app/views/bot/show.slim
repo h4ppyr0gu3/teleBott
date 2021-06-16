@@ -1,0 +1,20 @@
+.container
+	.is-size-1
+		= link_to @name, root_path, class: "has-text-grey-dark"
+	.columns
+		.column
+			h1.is-size-3 Groups
+			- @groups.each_with_index do |group, idx|
+				.box
+					.columns
+						.column
+							.is-size-4
+								= group["name"]
+						.column
+							= link_to "Remove", group_path(id: @id, group_id: idx), class: "button", method: :delete
+
+		.column
+			h1.is-size-3 Message
+			.box 
+				p = @message
+				= link_to "Edit", edit_message_path(@id), class: "button"
