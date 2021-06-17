@@ -5,10 +5,12 @@
 		.level-right
 			= link_to "Bots", root_path, class: "is-size-3"
 	- if @errors.length > 0
-		- @errors.each_with_index do |err, idx|
+		- @errors.each do |err|
 			.box
 				.columns
 					.column
-						= err
+						= err.error
+						br
+						= err.bot_name
 					.column
-						= link_to "Remove", error_path(idx), method: :delete, class: "button"
+						= link_to "Remove", error_path(err.id), method: :delete, class: "button"

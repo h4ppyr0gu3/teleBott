@@ -4,22 +4,22 @@
 		.field
 			= f.label :message, class: "label"
 			.control
-				= f.hidden_field :old_message, value: @message
-				= f.text_field :message, class: "input", placeholder: "Message", value: @message
+				= f.hidden_field :old_message, value: @bot.message
+				= f.text_field :message, class: "input", placeholder: "Message", value: @bot.message
 		.field
 			.control
 				= f.submit "Edit", class: "button"
 	- if @old.length > 0
 		p.label.pt-3 history
-		- @old.each_with_index do |old, idx|
+		- @old.each do |old|
 			.box
 				.columns
 					.column
-						= old
+						= old.message
 					.column
 						= form_for :anything, url: message_path, method: :patch do |f|
-							= f.hidden_field :message, class: "input", placeholder: "Message", value: old
-							= f.hidden_field :old_message, value: @message
+							= f.hidden_field :message, class: "input", placeholder: "Message", value: old.message
+							= f.hidden_field :old_message, value: @bot.message
 							= f.submit "Select", class: "button"
 					.column
-						= link_to "Remove from history", message_path(history_id: idx), method: :delete, class: "button"
+						= link_to "Remove from history", message_path(id: @bot.id, history: old.id), method: :delete, class: "button"

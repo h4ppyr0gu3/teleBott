@@ -6,7 +6,7 @@
 			= link_to "Errors", error_index_path, class: "is-size-3"
 	= link_to "Add Bot", new_bot_path, class: "button"
 
-	- @bots.each_with_index do |bot, idx|
+	- @bots.each do |bot|
 		.box.mt-3
 			.columns
 				.column
@@ -18,11 +18,11 @@
 						tr
 							td Message: 
 							td							 
-								= bot["current_message"]
+								= bot["message"]
 				.column
-					= link_to "Edit", bot_path(idx), class: "button mx-3"
+					= link_to "Edit", bot_path(bot.id), class: "button mx-3"
 				.column
-					= link_to "Delete", bot_path(idx), method: :delete, class: "button"  
+					= link_to "Delete", bot_path(bot.id), method: :delete, class: "button"  
 					p.is-size-7 The bot has to be deleted on telegram as well
 
 

@@ -1,20 +1,28 @@
 .container
 	.is-size-1
-		= link_to @name, root_path, class: "has-text-grey-dark"
+		= link_to @bot.name, root_path, class: "has-text-grey-dark"
 	.columns
 		.column
 			h1.is-size-3 Groups
-			- @groups.each_with_index do |group, idx|
+			- @groups.each do |group|
 				.box
 					.columns
 						.column
 							.is-size-4
 								= group["name"]
 						.column
-							= link_to "Remove", group_path(id: @id, group_id: idx), class: "button", method: :delete
+							= link_to "Remove", group_path(id: @bot.id, group: group.id), class: "button", method: :delete
 
 		.column
 			h1.is-size-3 Message
 			.box 
-				p = @message
-				= link_to "Edit", edit_message_path(@id), class: "button"
+				p = @bot.message
+				= link_to "Edit", edit_message_path(@bot.id), class: "button"
+			.box
+				= form_for :anything, url: bot_path(@bot.id), method: :patch do |f|
+					.field
+						= f.label :token, "Bot Token", class: "label" 
+						.control
+						= f.text_area :token, class: "input", value: @bot.token 
+					.control
+						= f.submit "Update", class: "button" 
