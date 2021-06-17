@@ -22,7 +22,7 @@
 				.column
 					= link_to "Edit", bot_path(bot.id), class: "button mx-3"
 				.column
-					= link_to "Delete", bot_path(bot.id), method: :delete, class: "button"  
+					= button_to "Delete", bot_path(bot.id), method: :delete, class: "button"  
 					p.is-size-7 The bot has to be deleted on telegram as well
 
 

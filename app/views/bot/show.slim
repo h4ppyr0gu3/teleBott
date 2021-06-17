@@ -11,7 +11,7 @@
 							.is-size-4
 								= group["name"]
 						.column
-							= link_to "Remove", group_path(id: @bot.id, group: group.id), class: "button", method: :delete
+							= button_to "Remove", group_path(id: @bot.id, group: group.id), class: "button", method: :delete
 
 		.column
 			h1.is-size-3 Message

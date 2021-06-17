@@ -22,4 +22,4 @@
 							= f.hidden_field :old_message, value: @bot.message
 							= f.submit "Select", class: "button"
 					.column
-						= link_to "Remove from history", message_path(id: @bot.id, history: old.id), method: :delete, class: "button"
+						= button_to "Remove from history", message_path(id: @bot.id, history: old.id), method: :delete, class: "button"
